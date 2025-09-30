@@ -35,15 +35,15 @@
 
   
   
-    <meta name="description" content="这是我的第一篇博客">
+    <meta name="description" content="这是我的第一篇博客 多进程与信号发送信号Linux 操作系统提供了 kill 和 killall 命令向进程发送信号，在程序中，可以用 kill()函数向其它进程发送信号。  函数声明:	int kill(pid t pid, int sig);		kill()函数将参数 sig 指定的信号给参数 pid 指定的进程。参数 pid 有几种情况:  pid&gt;0 将信号传给进程号为 pid 的进">
 <meta property="og:type" content="article">
 <meta property="og:title" content="first-blog">
 <meta property="og:url" content="https://quinn1117.github.io/2025/08/30/first-blog/index.html">
 <meta property="og:site_name" content="Quinn的博客">
-<meta property="og:description" content="这是我的第一篇博客">
+<meta property="og:description" content="这是我的第一篇博客 多进程与信号发送信号Linux 操作系统提供了 kill 和 killall 命令向进程发送信号，在程序中，可以用 kill()函数向其它进程发送信号。  函数声明:	int kill(pid t pid, int sig);		kill()函数将参数 sig 指定的信号给参数 pid 指定的进程。参数 pid 有几种情况:  pid&gt;0 将信号传给进程号为 pid 的进">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-08-30T07:49:15.000Z">
-<meta property="article:modified_time" content="2025-08-30T07:54:11.433Z">
+<meta property="article:modified_time" content="2025-09-30T11:37:04.148Z">
 <meta property="article:author" content="Quinn">
 <meta name="twitter:card" content="summary">
   
@@ -231,7 +231,7 @@
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%8E%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.</span> <span class="toc-text">多进程与信号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.1.</span> <span class="toc-text">发送信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%8E%E4%BF%A1%E5%8F%B7-1"><span class="toc-number">1.2.</span> <span class="toc-text">多进程与信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="toc-number">1.3.</span> <span class="toc-text">共享内存</span></a></li></ol></li></ol>
   
 </div>
 </div>
@@ -243,7 +243,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -330,7 +330,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2025-08-30T07:49:15.000Z" itemprop="datePublished">2025-08-30</time>
-    <time style="display: none;" id="post-update-time">2025-08-30</time>
+    <time style="display: none;" id="post-update-time">2025-09-30</time>
   </span>
   
 </div>
@@ -345,6 +345,32 @@
       
       
         <p>这是我的第一篇博客</p>
+<h2 id="多进程与信号"><a href="#多进程与信号" class="headerlink" title="多进程与信号"></a>多进程与信号</h2><h3 id="发送信号"><a href="#发送信号" class="headerlink" title="发送信号"></a>发送信号</h3><p>Linux 操作系统提供了 <code>kill</code> 和 <code>killall</code> 命令向进程发送信号，在程序中，可以用 <code>kill()</code>函数向其它进程发送信号。</p>
+<blockquote>
+<p>函数声明:<br>	int kill(pid t pid, int sig);	<br>	kill()函数将参数 sig 指定的信号给参数 pid 指定的进程。<br>参数 pid 有几种情况:</p>
+<ol>
+<li><p>pid&gt;0 将信号传给进程号为 pid 的进程</p>
+</li>
+<li><p>pid&#x3D;0 将信号传给和目前进程相同进程组的所有进程，常用于父进程给子进程发送信号，注意，发送信号者进程也会收到自己发出的信号。</p>
+</li>
+<li><p>pid&#x3D;-1 将信号广播传送给系统内所有的进程，例如系统关机时，会向所有的登录窗口广播关机信息。</p>
+<p>sig:准备发送的信号代码，假如其值为0则没有任何信号送出，但是系统会执行错误检查，通常会利用 sig 值为零来检验某个进程是否仍在运行。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="多进程与信号-1"><a href="#多进程与信号-1" class="headerlink" title="多进程与信号"></a>多进程与信号</h3><p>在多进程的服务程序中，如果子进程收到退出信号，子进程自行退出；</p>
+<p>如果父进程收到退出信号应该先向全部的子进程发送退出信号，然后自己再退出。</p>
+<h3 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h3><ol>
+<li><p>多线程共享进程的地址空间，如果多个线程需要访问同一块内存，用全局变量就可以了。</p>
+</li>
+<li><p>在多进程中，每个进程的地址空间是独立的，不共享的，如果多个进程需要访问同一块内存，不能用全局变量，只能用共享内存。</p>
+</li>
+<li><p>共享内存(Shared Memory)允许多个进程(不要求进程之间有血缘关系)访问同一块内存空间，是多个进程之间共享和传递数据最高效的方式。进程可以将共享内存连接到它们自己的地址空间中，如果某个进程修改了共享内存中的数据，其它的进程读到的数据也会改变。</p>
+</li>
+<li><p>共享内存并未提供锁机制，也就是说，在某一个进程对共享内存的进行读&#x2F;写的时候，不会阻止其它进程对它的读写。如果要对共享内存的读&#x2F;写加锁，可以使用信号量。</p>
+</li>
+</ol>
+<p>linux中提供了一组函数用于操作共享内存：</p>
 
       
     </div>
@@ -440,10 +466,10 @@
     
       <div>
         <span class="icon-brush"></span>
-        7k
+        2.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:30
+        00:09
       </div>
     
     
@@ -476,7 +502,7 @@
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%8E%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.</span> <span class="toc-text">多进程与信号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.1.</span> <span class="toc-text">发送信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%8E%E4%BF%A1%E5%8F%B7-1"><span class="toc-number">1.2.</span> <span class="toc-text">多进程与信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="toc-number">1.3.</span> <span class="toc-text">共享内存</span></a></li></ol></li></ol>
   
 </div>
 </div>
@@ -488,7 +514,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -640,9 +666,9 @@
           url: "https://quinn1117.github.io/2025/08/30/first-blog/",
           excerpt: "",
           description: "",
-          stripContent: "这是我的第一篇博客 ",
+          stripContent: "这是我的第一篇博客 多进程与信号发送信号Linux 操作系统提供了 kill 和 killall 命令向进程发送信号，在程序中，可以用 kill()函数向其它进程发送信号。  函数声明: int kill(pid t pid, int sig);  kill()函数将参数 sig 指定的信号给参数 pid 指定的进程。参数 pid 有几种情况:  pid&amp;gt;0 将信号传给进程号为 pid 的进程  pid&amp;#x3D;0 将信号传给和目前进程相同进程组的所有进程，常用于父进程给子进程发送信号，",
           date: "Sat Aug 30 2025 15:49:15 GMT+0800",
-          updated: "Sat Aug 30 2025 15:54:11 GMT+0800",
+          updated: "Tue Sep 30 2025 19:37:04 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
