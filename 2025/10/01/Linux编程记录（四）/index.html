@@ -35,15 +35,15 @@
 
   
   
-    <meta name="description" content="[TOC] 进程通信   方式 通信方向 亲缘要求 数据特点 同步需求 性能    管道（Pipe） 单向 需父子进程 字节流 无 中   命名管道（FIFO） 单向 无 字节流 无 中   共享存储映射（mmap）        共享内存 双向 无 直接内存访问 需同步 高   循环队列        消息队列 双向 无 结构化消息 可选 中低   信号 单向 无 仅信号编号 - 高   信号量">
+    <meta name="description" content="[TOC] 进程通信   方式 通信方向 亲缘要求 数据特点 同步需求 性能    管道（Pipe） 单向 需父子进程 字节流 无 中   命名管道（FIFO） 单向 无 字节流 无 中   共享存储映射（mmap） 双向 无 直接内存访问 需同步 高   共享内存 双向 无 直接内存访问 需同步 高   循环队列 双向 无 结构 需同步 高   消息队列 双向 无 结构化消息 可选 中低   信">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux编程记录（四）">
 <meta property="og:url" content="https://quinn1117.github.io/2025/10/01/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
 <meta property="og:site_name" content="Quinn的博客">
-<meta property="og:description" content="[TOC] 进程通信   方式 通信方向 亲缘要求 数据特点 同步需求 性能    管道（Pipe） 单向 需父子进程 字节流 无 中   命名管道（FIFO） 单向 无 字节流 无 中   共享存储映射（mmap）        共享内存 双向 无 直接内存访问 需同步 高   循环队列        消息队列 双向 无 结构化消息 可选 中低   信号 单向 无 仅信号编号 - 高   信号量">
+<meta property="og:description" content="[TOC] 进程通信   方式 通信方向 亲缘要求 数据特点 同步需求 性能    管道（Pipe） 单向 需父子进程 字节流 无 中   命名管道（FIFO） 单向 无 字节流 无 中   共享存储映射（mmap） 双向 无 直接内存访问 需同步 高   共享内存 双向 无 直接内存访问 需同步 高   循环队列 双向 无 结构 需同步 高   消息队列 双向 无 结构化消息 可选 中低   信">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-10-01T12:38:40.000Z">
-<meta property="article:modified_time" content="2025-10-02T14:57:02.951Z">
+<meta property="article:modified_time" content="2025-10-02T15:01:24.797Z">
 <meta property="article:author" content="Quinn">
 <meta name="twitter:card" content="summary">
   
@@ -374,11 +374,11 @@
 </tr>
 <tr>
 <td align="left">共享存储映射（mmap）</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">双向</td>
+<td align="left">无</td>
+<td align="left">直接内存访问</td>
+<td align="left">需同步</td>
+<td align="left">高</td>
 </tr>
 <tr>
 <td align="left">共享内存</td>
@@ -390,11 +390,11 @@
 </tr>
 <tr>
 <td align="left">循环队列</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">双向</td>
+<td align="left">无</td>
+<td align="left">结构</td>
+<td align="left">需同步</td>
+<td align="left">高</td>
 </tr>
 <tr>
 <td align="left">消息队列</td>
@@ -963,7 +963,7 @@
         13.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:56
+        00:57
       </div>
     
     
@@ -1160,9 +1160,9 @@
           url: "https://quinn1117.github.io/2025/10/01/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89/",
           excerpt: "",
           description: "",
-          stripContent: "[TOC] 进程通信   方式 通信方向 亲缘要求 数据特点 同步需求 性能    管道（Pipe） 单向 需父子进程 字节流 无 中   命名管道（FIFO） 单向 无 字节流 无 中   共享存储映射（mmap）        共享内存 双向 无 直接内存访问 需同步 高   循环队列        消息队列 双向 无 结构化消息 可选 中低   信号 单向 无 仅信号编号 - 高   信号量 - 无 同步计数器 - 高   套接字 双向 无 字节流&amp;#x2F;消息 可选 中低   文件锁 ",
+          stripContent: "[TOC] 进程通信   方式 通信方向 亲缘要求 数据特点 同步需求 性能    管道（Pipe） 单向 需父子进程 字节流 无 中   命名管道（FIFO） 单向 无 字节流 无 中   共享存储映射（mmap） 双向 无 直接内存访问 需同步 高   共享内存 双向 无 直接内存访问 需同步 高   循环队列 双向 无 结构 需同步 高   消息队列 双向 无 结构化消息 可选 中低   信号 单向 无 仅信号编号 - 高   信号量 - 无 同步计数器 - 高   套接字 双向 无 字节",
           date: "Wed Oct 01 2025 20:38:40 GMT+0800",
-          updated: "Thu Oct 02 2025 22:57:02 GMT+0800",
+          updated: "Thu Oct 02 2025 23:01:24 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
