@@ -230,7 +230,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -311,10 +311,136 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/10/01/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89/" aria-label="Linux编程记录（三）"></a>
+      <a class="post-link" href="/2025/10/01/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89/" aria-label="Linux编程记录（四）"></a>
     
     
     <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Linux编程记录（四）" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-10-01</span>
+        
+        <span><span class="icon-pencil"></span>7k words</span>
+        <span><span class="icon-clock"></span>31 mins</span>
+      </div>
+      <h2 class="post-title">Linux编程记录（四）</h2>
+      <article class="post-article">
+        
+          [TOC]
+进程通信
+
+
+方式
+通信方向
+亲缘要求
+数据特点
+同步需求
+性能
+
+
+
+管道（Pipe）
+单向
+需父子进程
+字节流
+无
+中
+
+
+命名管道（FIFO）
+单向
+无
+字节流
+无
+中
+
+
+共享存储映射（mmap）
+
+
+
+
+
+
+
+共享内存
+双向
+无
+直接内存访问
+需同步
+高
+
+
+循环队列
+
+
+
+
+
+
+
+消息队列
+双向
+无
+结构化消息
+可选
+中低
+
+
+信号
+单向
+无
+仅信号编号
+-
+高
+
+
+信号量
+-
+无
+同步计数器
+-
+高
+
+
+套接字
+双向
+无
+字节流&amp;#x2F;消息
+可选
+中低
+
+
+文件锁
+-
+无
+同步文件访问
+-
+中
+
+
+一）管道1）介绍
+匿名管道：单向通信，仅用于父子进程或有亲缘关系的
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/10/01/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89/" aria-label="Linux编程记录（三）"></a>
+    
+    
+    <div class="post-cover-right">
       
         
         
@@ -326,21 +452,19 @@
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-10-01</span>
         
-        <span><span class="icon-pencil"></span>2.1k words</span>
-        <span><span class="icon-clock"></span>9 mins</span>
+        <span><span class="icon-pencil"></span>1.4k words</span>
+        <span><span class="icon-clock"></span>5 mins</span>
       </div>
       <h2 class="post-title">Linux编程记录（三）</h2>
       <article class="post-article">
         
-          多进程与信号发送信号Linux 操作系统提供了 kill 和 killall 命令向进程发送信号，在程序中，可以用 kill()函数向其它进程发送信号。
-
-函数声明:	int kill(pid t pid, int sig);		kill()函数将参数 sig 指定的信号给参数 pid 指定的进程。参数 pid 有几种情况:
-
-pid&amp;gt;0 将信号传给进程号为 pid 的进程
-
-pid&amp;#x3D;0 将信号传给和目前进程相同进程组的所有进程，常用于父进程给子进程发送信号，注意，发送信号者进程也会收到自己发出的信号。
-
-pid&amp;#x3D;-1 将信号广播传送给系统内所有的进程，例如系统关机时
+          目录文件相关ls -l &amp;lt;目录名&amp;gt;这是查看指定目录下的所有文件的详细信息。
+ls -dl &amp;lt;目录名&amp;gt;这是查看指定目录本身的详细信息。
+ls -Rl递归查看详细信息。
+which &amp;lt;命令&amp;gt;查看命令所在的位置。
+cp -r &amp;lt;目录名&amp;gt;拷贝目录。如果加-a就会拷贝所有属性，也就是创建时间之类的也会拷贝过去。
+tac &amp;lt;文件名&amp;gt;和cat &amp;lt;文件名&amp;gt;是反过来显示文件。
+wc计算文件的 Byte 数、字数、或是列数，若不指定文件名称、或是所给予的文件名为“_”，则wc指令会从标准输入设备读取数据。-c或-bytes 或-chars 只
         
       </article>
     </div>
@@ -349,12 +473,12 @@ pid&amp;#x3D;-1 将信号广播传送给系统内所有的进程，例如系统�
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/09/30/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89/" aria-label="Linux编程记录（二）"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         
         
@@ -384,12 +508,12 @@ tm结构体1234567891011121314151617181920//声明struct tm&amp;#123;  int tm_se
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2025/09/29/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" aria-label="Linux编程记录（一）"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
@@ -422,12 +546,12 @@ yum处理的软件包格式
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/08/30/hello-world/" aria-label="Hello World"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         
         
@@ -488,10 +612,10 @@ Run server1$ hexo ser
     
       <div>
         <span class="icon-brush"></span>
-        7.2k
+        13.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:30
+        00:57
       </div>
     
     
@@ -528,7 +652,7 @@ Run server1$ hexo ser
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">4</div>
+    <div class="sidebar-state-number">5</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
