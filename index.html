@@ -230,7 +230,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
@@ -311,10 +311,56 @@
       <div class="post-wrapper">
   <div class="post-wrap-left" data-aos="fade-up">
     
-      <a class="post-link" href="/2025/10/01/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89/" aria-label="Linux编程记录（四）"></a>
+      <a class="post-link" href="/2025/10/03/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89/" aria-label="Linux编程记录（五）"></a>
     
     
     <div class="post-cover-left">
+      
+        
+        
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Linux编程记录（五）" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-10-03</span>
+        
+        <span><span class="icon-pencil"></span>2k words</span>
+        <span><span class="icon-clock"></span>8 mins</span>
+      </div>
+      <h2 class="post-title">Linux编程记录（五）</h2>
+      <article class="post-article">
+        
+          会话会话多个进程组的集合
+创建一个会话需要注意以下6点注意事项:
+
+调用进程不能是进程组组长，该进程变成新会话首进程(session header)。
+该进程成为一个新进程组的组长进程。
+需有 root 杈限(ubuntu 不需要)
+新会话丢弃原有的控制终端，该会话没有控制终端。
+该调用进程是组长进程，则出错返回。
+建立新会话时，先调用 fork，父进程终止，子进程调用 setsid()
+
+getsid函数
+获取进程所属的会话 ID。pid_t getsid(pid_t pid);
+成功：返回调用进程的会话ID；
+失败：-1，设置 errno
+pid为0表示察看当前进程 session lD；
+        
+      </article>
+    </div>
+  </div>
+</div>
+      
+    
+      <div class="post-wrapper">
+  <div class="post-wrap-right" data-aos="fade-up">
+    
+      <a class="post-link" href="/2025/10/01/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89/" aria-label="Linux编程记录（四）"></a>
+    
+    
+    <div class="post-cover-right">
       
         
         
@@ -326,8 +372,8 @@
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-10-01</span>
         
-        <span><span class="icon-pencil"></span>6.9k words</span>
-        <span><span class="icon-clock"></span>31 mins</span>
+        <span><span class="icon-pencil"></span>8.7k words</span>
+        <span><span class="icon-clock"></span>38 mins</span>
       </div>
       <h2 class="post-title">Linux编程记录（四）</h2>
       <article class="post-article">
@@ -434,12 +480,12 @@
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/10/01/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89/" aria-label="Linux编程记录（三）"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         
         
@@ -472,12 +518,12 @@ wc计算文件的 Byte 数、字数、或是列数，若不指定文件名称、
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2025/09/30/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89/" aria-label="Linux编程记录（二）"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
@@ -507,12 +553,12 @@ tm结构体1234567891011121314151617181920//声明struct tm&amp;#123;  int tm_se
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-right" data-aos="fade-up">
+  <div class="post-wrap-left" data-aos="fade-up">
     
       <a class="post-link" href="/2025/09/29/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" aria-label="Linux编程记录（一）"></a>
     
     
-    <div class="post-cover-right">
+    <div class="post-cover-left">
       
         
         
@@ -545,12 +591,12 @@ yum处理的软件包格式为.rpm，同样包含了预
       
     
       <div class="post-wrapper">
-  <div class="post-wrap-left" data-aos="fade-up">
+  <div class="post-wrap-right" data-aos="fade-up">
     
       <a class="post-link" href="/2025/08/30/hello-world/" aria-label="Hello World"></a>
     
     
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
@@ -611,10 +657,10 @@ Run server1$ hexo ser
     
       <div>
         <span class="icon-brush"></span>
-        13.5k
+        17.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:57
+        01:12
       </div>
     
     
@@ -651,7 +697,7 @@ Run server1$ hexo ser
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
