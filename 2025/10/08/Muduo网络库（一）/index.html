@@ -17,7 +17,7 @@
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)","zh-CN":"复制成功 (*^▽^*)","zh-TW":"複製成功 (*^▽^*)","ja":"コピー成功 (*^▽^*)","pt-BR":"Copiado com sucesso (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ","zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ","zh-TW":"複製失敗 (ﾟ⊿ﾟ)ﾂ","ja":"コピー失敗 (ﾟ⊿ﾟ)ﾂ","pt-BR":"Falha ao copiar (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://quinn1117.github.io';</script>
   
   <title>
-    Hello World |
+    Muduo网络库（一） |
     
     Quinn的博客
   </title>
@@ -35,15 +35,15 @@
 
   
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="阻塞、非阻塞、同步、异步 典型的一次IO的两个阶段：数据准备和数据读写  网络IO阶段一：数据准备系统api同步IO接口recv() 1ssize_t recv  阻塞调用IO方法的线程进入阻塞状态。 recv()默认是阻塞的，调用阻塞IO时，sockfd没有数据到来（内核TCP接受缓冲区无数据），会一直等待数据到来。 非阻塞不会改变线程状态，通过返回值判断。 如果是非阻塞，sockfd没有数据到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://quinn1117.github.io/2025/08/30/hello-world/index.html">
+<meta property="og:title" content="Muduo网络库（一）">
+<meta property="og:url" content="https://quinn1117.github.io/2025/10/08/Muduo%E7%BD%91%E7%BB%9C%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="Quinn的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="阻塞、非阻塞、同步、异步 典型的一次IO的两个阶段：数据准备和数据读写  网络IO阶段一：数据准备系统api同步IO接口recv() 1ssize_t recv  阻塞调用IO方法的线程进入阻塞状态。 recv()默认是阻塞的，调用阻塞IO时，sockfd没有数据到来（内核TCP接受缓冲区无数据），会一直等待数据到来。 非阻塞不会改变线程状态，通过返回值判断。 如果是非阻塞，sockfd没有数据到">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-08-30T05:44:52.680Z">
-<meta property="article:modified_time" content="2025-08-30T05:44:52.681Z">
+<meta property="article:published_time" content="2025-10-08T02:00:22.000Z">
+<meta property="article:modified_time" content="2025-10-08T15:00:02.721Z">
 <meta property="article:author" content="Quinn">
 <meta name="twitter:card" content="summary">
   
@@ -190,7 +190,7 @@
           
         </picture>
         
-          <img crossorigin="anonymous" fetchpriority="high" src="/images/banner.webp" alt="Hello World">
+          <img crossorigin="anonymous" fetchpriority="high" src="/images/banner.webp" alt="Muduo网络库（一）">
         
       
     
@@ -201,7 +201,7 @@
         
         
           <span id="logo">
-            <h1 data-aos="slide-up">Hello World</h1>
+            <h1 data-aos="slide-up">Muduo网络库（一）</h1>
           </span>
         
       
@@ -231,7 +231,7 @@
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E%E3%80%81%E9%9D%9E%E9%98%BB%E5%A1%9E%E3%80%81%E5%90%8C%E6%AD%A5%E3%80%81%E5%BC%82%E6%AD%A5"><span class="toc-number">1.</span> <span class="toc-text">阻塞、非阻塞、同步、异步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9CIO%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">网络IO阶段一：数据准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E"><span class="toc-number">1.1.1.</span> <span class="toc-text">阻塞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="toc-number">1.1.2.</span> <span class="toc-text">非阻塞</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9CIO%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99"><span class="toc-number">1.2.</span> <span class="toc-text">网络IO阶段二：数据读写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5"><span class="toc-number">1.2.1.</span> <span class="toc-text">同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5"><span class="toc-number">1.2.2.</span> <span class="toc-text">异步</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%BA%94%E7%A7%8DIO%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">Linux五种IO模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E5%A1%9Eblocking"><span class="toc-number">2.1.</span> <span class="toc-text">阻塞blocking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9Enon-blocking"><span class="toc-number">2.2.</span> <span class="toc-text">非阻塞non-blocking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E5%A4%8D%E7%94%A8IO-multiplexing"><span class="toc-number">2.3.</span> <span class="toc-text">IO复用IO multiplexing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8signal-driven"><span class="toc-number">2.4.</span> <span class="toc-text">信号驱动signal-driven</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5asynchronize"><span class="toc-number">2.5.</span> <span class="toc-text">异步asynchronize</span></a></li></ol></li></ol>
   
 </div>
 </div>
@@ -324,13 +324,13 @@
   
 </aside>
 
-          <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-Muduo网络库（一）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2025-08-30T05:44:52.680Z" itemprop="datePublished">2025-08-30</time>
-    <time style="display: none;" id="post-update-time">2025-08-30</time>
+    <time datetime="2025-10-08T02:00:22.000Z" itemprop="datePublished">2025-10-08</time>
+    <time style="display: none;" id="post-update-time">2025-10-08</time>
   </span>
   
 </div>
@@ -344,19 +344,73 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="阻塞、非阻塞、同步、异步"><a href="#阻塞、非阻塞、同步、异步" class="headerlink" title="阻塞、非阻塞、同步、异步"></a>阻塞、非阻塞、同步、异步</h2><blockquote>
+<p>典型的一次IO的两个阶段：数据准备和数据读写</p>
+</blockquote>
+<h3 id="网络IO阶段一：数据准备"><a href="#网络IO阶段一：数据准备" class="headerlink" title="网络IO阶段一：数据准备"></a>网络IO阶段一：数据准备</h3><p>系统api同步IO接口recv()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssize_t recv</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h4 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h4><p>调用IO方法的线程进入阻塞状态。</p>
+<p><code>recv()</code>默认是阻塞的，调用阻塞IO时，sockfd没有数据到来（内核TCP接受缓冲区无数据），会一直等待数据到来。</p>
+<h4 id="非阻塞"><a href="#非阻塞" class="headerlink" title="非阻塞"></a>非阻塞</h4><p>不会改变线程状态，通过返回值判断。</p>
+<p>如果是非阻塞，sockfd没有数据到来，它会立刻返回。</p>
+<p>size &#x3D;&#x3D; -1：发生错误，需要关闭sockfd</p>
+<p>size &#x3D;&#x3D; -1 &amp;&amp; errno &#x3D;&#x3D; EAGAIN或EWOULDBLOCK：连接正常，但是没有数据，非阻塞返回</p>
+<p>size &#x3D;&#x3D; 0：网络对端关闭连接</p>
+<p>size &gt; 0：数据返回</p>
+<h3 id="网络IO阶段二：数据读写"><a href="#网络IO阶段二：数据读写" class="headerlink" title="网络IO阶段二：数据读写"></a>网络IO阶段二：数据读写</h3><p>注意：这里提及的是IO的同步和异步，并不是业务上并发的同步和异步。</p>
+<h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><p>当应用程序调用同步IO接口时，网络IO阶段一数据准备好了以后，应用程序自己负责将TCP接收缓冲区内容移到内存中，这是同步。recv()是同步的IO接口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">char buf[1024] = &#123;0&#125;;</span><br><span class="line">int size = recv(sockfd, buf, 1024, 0);</span><br><span class="line">if(size &gt; 0)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h4 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h4><p>当应用程序调用异步IO接口时，可以做自己的事情，由操作系统将数据放入应用程序准备好的用户空间内存，并标记信号通知应用程序或者通过回调函数。</p>
+<p>异步IO接口</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;aio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">aio_read</span><span class="params">(<span class="keyword">struct</span> aiocb *aiocbp)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">aio_write</span><span class="params">(<span class="keyword">struct</span> aiocb *aiocbp)</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">aiocb</span> &#123;</span></span><br><span class="line">        <span class="type">int</span>             aio_fildes;    <span class="comment">/* File descriptor */</span></span><br><span class="line">        <span class="type">off_t</span>           aio_offset;    <span class="comment">/* File offset */</span></span><br><span class="line">        <span class="keyword">volatile</span> <span class="type">void</span>  *aio_buf;       <span class="comment">/* Location of buffer */</span></span><br><span class="line">        <span class="type">size_t</span>          aio_nbytes;    <span class="comment">/* Length of transfer */</span></span><br><span class="line">        <span class="type">int</span>             aio_reqprio;   <span class="comment">/* Request priority offset */</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">sigevent</span> <span class="title">aio_sigevent</span>;</span>  <span class="comment">/* Signal number and value */</span></span><br><span class="line">        <span class="type">int</span>             aio_lio_opcode;<span class="comment">/* Operation to be performed */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>Node.js：基于异步非阻塞模式的高性能服务器</p>
+<p>在处理IO的时候，阻塞和非阻塞都是同步IO，只有使用特殊的API时才是异步。</p>
+<table>
+<thead>
+<tr>
+<th align="left">同步</th>
+<th align="center"><strong>阻塞</strong></th>
+<th align="left"><strong>非阻塞 (I&#x2F;O多路复用)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td align="center">阻塞 I&#x2F;O</td>
+<td align="left">select &#x2F; poll &#x2F; epoll</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">异步</th>
+<th align="center">Linux</th>
+<th align="left"><strong>W</strong>indows</th>
+<th>.NET</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td align="center">AIO</td>
+<td align="left">IOCP</td>
+<td>BeginInvoke&#x2F;EndInvoke</td>
+</tr>
+</tbody></table>
+<p>业务层面的一个逻辑处理，是同步还是异步??<br>A操作等待B操作做完事情，得到返回值，继续处理。<br>A操作告诉B操作它感兴趣的事件以及通知方式，A操作继续执行自己的业务逻辑了；等B监听到相应事件发生后，B会通知A，A开始相应的数据处理逻辑。</p>
+<blockquote>
+<p>一个典型的网络IO接口调用，分为两个阶段，分别是“数据就绪”和“数据读写”，数据就绪阶段分为阻塞和非阻塞，表现的结果就是，阻塞当前线程或者直接返回。</p>
+<p>同步表示A向B请求调用一个网络IO接口时（或者调用某个业务逻辑API接口时），数据的读写都是由请求方A自己来完成的（不管是阻塞还是非阻塞）；异步表示A向B请求调用一个网络IO接口时（或者调用某个业务逻辑API接口时），向B传入请求的事件以及事件发生时通知的方式，A就可以处理其他逻辑了，当B监听到事件处理完成后，会用事先约定好的通知方式，通知A处理结果。</p>
+</blockquote>
+<h2 id="Linux五种IO模型"><a href="#Linux五种IO模型" class="headerlink" title="Linux五种IO模型"></a>Linux五种IO模型</h2><h3 id="阻塞blocking"><a href="#阻塞blocking" class="headerlink" title="阻塞blocking"></a>阻塞blocking</h3><p>应用进程read-&gt;系统调用-&gt;内核数据未准备好-&gt;等待数据-&gt;数据准备好-&gt;应用程序将数据从内核空间拷贝到用户空间-&gt;拷贝完成-&gt;应用处理数据</p>
+<h3 id="非阻塞non-blocking"><a href="#非阻塞non-blocking" class="headerlink" title="非阻塞non-blocking"></a>非阻塞non-blocking</h3><p>应用进程read-&gt;系统调用-&gt;内核数据未准备好-&gt;判断EAGAIN反复调用-&gt;等待数据-&gt;数据准备好-&gt;应用程序将数据从内核空间拷贝到用户空间-&gt;拷贝完成-&gt;应用处理数据</p>
+<h3 id="IO复用IO-multiplexing"><a href="#IO复用IO-multiplexing" class="headerlink" title="IO复用IO multiplexing"></a>IO复用IO multiplexing</h3><p>进程阻塞于select&#x2F;poll&#x2F;epoll，等待套接字变为可读-&gt;系统调用-&gt;数据未准备好-&gt;等待数据-&gt;数据准备好-&gt;返回可读fd-&gt;应用程序read-&gt;系统调用-&gt;应用程序将数据从内核空间拷贝到用户空间-&gt;拷贝完成-&gt;应用处理数据</p>
+<p>也是同步IO接口</p>
+<p>可以监听多个套接字</p>
+<h3 id="信号驱动signal-driven"><a href="#信号驱动signal-driven" class="headerlink" title="信号驱动signal-driven"></a>信号驱动signal-driven</h3><p>应用进程注册SIGIO的信号处理程序，系统调用sigaction-&gt;内核返回注册状态-&gt;内核数据未准备好-&gt;应用程序继续执行自己任务-&gt;数据准备好-&gt;通知SIGIO-&gt;执行信号处理程序-&gt;应用程序read-&gt;系统调用-&gt;应用程序将数据从内核空间拷贝到用户空间-&gt;拷贝完成-&gt;应用处理数据</p>
+<p>内核在第一个阶段是异步的，在第二个阶段是同步的；与非阻塞IO的区别在于它提供了消息通知机制，不需要用户进程不断的轮询检查，减少了系统API调用次数，提高了效率。</p>
+<h3 id="异步asynchronize"><a href="#异步asynchronize" class="headerlink" title="异步asynchronize"></a>异步asynchronize</h3><p>应用程序aio_read-&gt;系统调用-&gt;内核返回调用状态-&gt;内核返回注册状态-&gt;内核数据未准备好-&gt;应用程序继续执行自己任务-&gt;数据准备好-&gt;内核将数据拷贝到用户空间从aiocbp到aio_buf-&gt;通过aio_read注册的信号通知应用程序</p>
 
       
     </div>
@@ -376,23 +430,23 @@
   
   <nav id="article-nav" data-aos="fade-up">
     
-      
-      <div class="article-nav-link-wrap article-nav-link-left">
-        
-          
-          
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="Linux编程记录（一）" class="lazyload">
-          
-        
-        <a href="/2025/09/29/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/"></a>
-        <div class="article-nav-caption">Prev</div>
-        <h3 class="article-nav-title">
-          
-            Linux编程记录（一）
-          
-        </h3>
-      </div>
     
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Linux编程记录（五）" class="lazyload">
+        
+      
+      <a href="/2025/10/03/Linux%E7%BC%96%E7%A8%8B%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89/"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+        
+          Linux编程记录（五）
+        
+      </h3>
+    </div>
     
   </nav>
 
@@ -471,7 +525,7 @@
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
   
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E%E3%80%81%E9%9D%9E%E9%98%BB%E5%A1%9E%E3%80%81%E5%90%8C%E6%AD%A5%E3%80%81%E5%BC%82%E6%AD%A5"><span class="toc-number">1.</span> <span class="toc-text">阻塞、非阻塞、同步、异步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9CIO%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">网络IO阶段一：数据准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E"><span class="toc-number">1.1.1.</span> <span class="toc-text">阻塞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="toc-number">1.1.2.</span> <span class="toc-text">非阻塞</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9CIO%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99"><span class="toc-number">1.2.</span> <span class="toc-text">网络IO阶段二：数据读写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5"><span class="toc-number">1.2.1.</span> <span class="toc-text">同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5"><span class="toc-number">1.2.2.</span> <span class="toc-text">异步</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%BA%94%E7%A7%8DIO%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">Linux五种IO模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E5%A1%9Eblocking"><span class="toc-number">2.1.</span> <span class="toc-text">阻塞blocking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9Enon-blocking"><span class="toc-number">2.2.</span> <span class="toc-text">非阻塞non-blocking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E5%A4%8D%E7%94%A8IO-multiplexing"><span class="toc-number">2.3.</span> <span class="toc-text">IO复用IO multiplexing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8signal-driven"><span class="toc-number">2.4.</span> <span class="toc-text">信号驱动signal-driven</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5asynchronize"><span class="toc-number">2.5.</span> <span class="toc-text">异步asynchronize</span></a></li></ol></li></ol>
   
 </div>
 </div>
@@ -631,13 +685,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "Quinn",
-          title: "Hello World",
-          url: "https://quinn1117.github.io/2025/08/30/hello-world/",
+          title: "Muduo网络库（一）",
+          url: "https://quinn1117.github.io/2025/10/08/Muduo%E7%BD%91%E7%BB%9C%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/",
           excerpt: "",
           description: "",
-          stripContent: "Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &amp;quot;My New Po",
-          date: "Sat Aug 30 2025 13:44:52 GMT+0800",
-          updated: "Sat Aug 30 2025 13:44:52 GMT+0800",
+          stripContent: "阻塞、非阻塞、同步、异步 典型的一次IO的两个阶段：数据准备和数据读写  网络IO阶段一：数据准备系统api同步IO接口recv() 1ssize_t recv  阻塞调用IO方法的线程进入阻塞状态。 recv()默认是阻塞的，调用阻塞IO时，sockfd没有数据到来（内核TCP接受缓冲区无数据），会一直等待数据到来。 非阻塞不会改变线程状态，通过返回值判断。 如果是非阻塞，sockfd没有数据到来，它会立刻返回。 size &amp;#x3D;&amp;#x3D; -1：发生错误，需要关闭sockfd siz",
+          date: "Wed Oct 08 2025 10:00:22 GMT+0800",
+          updated: "Wed Oct 08 2025 23:00:02 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
